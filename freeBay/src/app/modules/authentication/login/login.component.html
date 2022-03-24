@@ -1,0 +1,43 @@
+
+    <div class="login-box">
+      <div class="login-logo">
+        <img
+          src="assets/images/logoLogin.png"
+          alt="Logo de freebay"
+          class="brand-image"
+          width="300"
+        />
+      </div>
+      <div class="card card-outline">
+        <div class="card-body">
+          <form novalidate  #form_login="ngForm" (submit)="login(form_login)">
+            <mat-progress-bar mode="indeterminate" *ngIf="progress_login"></mat-progress-bar>
+            <br>
+            <input
+                [(ngModel)]="email"
+                type="text"
+                class="form-control"
+                placeholder="email"
+                name="email"
+                required
+              />
+              <br>
+            <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <br>
+            <button type="submit" class="btn btn-primary btn-block"> Inciar Sesión</button>
+          </form>
+          <br>
+          <button type="submit" class="btn btn-primary btn-block" (click)="onRegister()">Registrarse</button>
+          <br />
+        </div>
+      </div>
+    </div>
+  
+  

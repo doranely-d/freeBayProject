@@ -1,0 +1,100 @@
+<app-layout></app-layout>
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Mi carrito de compra</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-product-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <form method="post" action="#">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Producto</th>
+                                        <th class="product-price">Precio</th>
+                                        <th class="product-quantity">Cantidad</th>
+                                        <th class="product-subtotal">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor=" let item of cartItems">
+                                    <tr  class="cart_item">
+                                    <tr >
+                                        <td class="product-remove">
+                                            <a title="Remove this item" class="remove" href="#">×</a> 
+                                        </td>
+
+                                        <td class="product-thumbnail">
+                                            <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="../../../assets/images/products/{{item.product.url_image}}"></a>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <a href="">{{item.product.name}}</a> 
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount">{{item.product.price | currency}}</span> 
+                                        </td>
+
+                                        <td class="product-quantity">
+                                            <div class="quantity buttons_added">
+                                                <input type="button" class="minus" value="-" (click)="onMinusClick(item,9999999999,9999999999)">
+                                                <input type="number" size="4" class="input-text qty text" title="Qty" value="{{item.qty}}" min="0" step="1" >
+                                                <input type="button" class="plus" value="+" (click)="onPlusClick(item,9999999999,9999999999)">
+                                            </div>
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="amount">{{item.product.price * item.qty | currency}}</span> 
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div class="cart-collaterals">
+                            <div class="cart_totals " >
+                                <h2>Total</h2>
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Subtotal</th>
+                                            <td><span class="amount">{{cart.total | currency}}</span></td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th>Envio</th>
+                                            <td>Free Shipping</td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Total</th>
+                                            <td><strong><span class="amount">{{cart.total | currency}}</span></strong> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="actions" colspan="6">
+                                                <input type="submit" value="Comprar" name="proceed" class="checkout-button button alt wc-forward btn-block">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

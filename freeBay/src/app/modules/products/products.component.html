@@ -1,0 +1,15 @@
+<div *ngFor="let product of products" class="col-md-3 col-sm-6">
+    <div class="single-shop-product text-center">
+        <div class="product-upper">
+            <img src="../../../assets/images/products/{{product.url_image}}" alt="">
+        </div>
+        <h2><a href="">{{product.name}}</a></h2>
+        <div class="product-carousel-price">
+            <ins>${{product.price}}</ins>
+        </div>  
+        
+        <div class="product-option-shop">
+            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="">Agregar</a>
+        </div>                       
+    </div>
+</div>
