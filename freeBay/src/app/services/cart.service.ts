@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Cart } from '../models/cart.model';
+import { Cart, Order } from '../models/cart.model';
 import { CartItem } from '../models/cartItem.model';
 
 @Injectable({
@@ -19,5 +19,11 @@ export class CartService {
   getCartItems(): Observable<CartItem[]> {
     return this.http.get<CartItem[]>('http://127.0.0.1:8000/cartItem');
   }
+
+    /** GET order*/
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>('http://127.0.0.1:8000/order');
+  }
+  
 
 }

@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   password: string = '';
-  email: string = '';
+  username: string = '';
   progress_login = false;
 
   constructor(  private router: Router, private authService: AuthService) { }
@@ -27,18 +27,33 @@ export class LoginComponent implements OnInit {
     this.progress_login = true;
 
     if (form_login.valid) {
-      const user = {username: form_login.value.email, password: form_login.value.password};
-      this.authService.login(user).subscribe( data => {
+      this.authService.login(form_login.value.username, form_login.value.password).subscribe( data => {
       console.log(data['user']);
       this.save_sesion(
         JSON.stringify(data['user']),data['token']
       );
       this.sesion_user(true);
-      this.router.navigate(['/']);
+      
+      if (data['user']['role'].name == 'ROL_VENDEDOR') {
+        this.router.navigate(['dashboard']);
+      }else{
+        this.router.navigate(['/']);
+      }
       form_login.reset();
       this.progress_login = false;
     },
-    (err) => {console.log(err)});
+    (err) => {
+      console.log(err);
+      this.progress_login = false;
+      Swal.fire({
+        title: 'Error!',
+        text: "Usuario o contraseña incorrecta",
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#39C0ED'
+        })
+      }
+      );
     }
   }
 

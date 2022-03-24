@@ -9,29 +9,26 @@
       </div>
       <div class="card card-outline">
         <div class="card-body">
-          <form novalidate >
+          <form novalidate  #form_login="ngForm" (submit)="register(form_login)">
+            <mat-progress-bar mode="indeterminate" *ngIf="progress_login"></mat-progress-bar>
             <input
+            [(ngModel)]="username"
             type="text"
             class="form-control"
             placeholder="Username"
             name="username"
             required
           /> <br>
-          <input
-          type="text"
-          class="form-control"
-          placeholder="sexo"
-          name="sexo"
-          required
-        /> <br>
         <input
         type="text"
+        [(ngModel)]="email"
         class="form-control"
         placeholder="email"
         name="email"
         required
       /> <br>
-      <input
+          <input
+            [(ngModel)]="password"
             type="password"
             class="form-control"
             placeholder="Password"

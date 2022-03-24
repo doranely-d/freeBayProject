@@ -1,71 +1,68 @@
 <div class="wrapper">
-    <app-layout-a></app-layout-a>
-  
-    <div class="content-wrapper">
-      <section class="content-header">
-        <h1>
-          Dashboard
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
-      </section>
-  
-      <section class="content">
+  <app-layout-a></app-layout-a>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Ventas
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Ventas</li>
+      </ol>
+    </section>
+    <section class="content">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>150</h3>
-                <p>Productos</p>
+          <div class="col-12">
+              <div style=" overflow-x: scroll;" >
+              <table 
+                mat-table
+                [dataSource]="dataSource"
+                matSort
+                class="mat-elevation-z8"
+              >
+                <ng-container matColumnDef="id" >
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                  <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                </ng-container>
+                <ng-container matColumnDef="user">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>USUARIO</th>
+                  <td mat-cell *matCellDef="let row">{{ row.user.username }}</td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>NOMBRE</th>
+                  <td mat-cell *matCellDef="let row">{{ row.user.first_name }} {{ row.user.last_name }}</td>
+                </ng-container>
+                <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>TOTAL</th>
+                  <td mat-cell *matCellDef="let row">{{ row.total  | currency}}</td>
+                </ng-container>
+                <ng-container matColumnDef="total_qty">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>CANTIDAD</th>
+                  <td mat-cell *matCellDef="let row">{{ row.total_qty }}</td>
+                </ng-container>
+                <ng-container matColumnDef="created_at">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header >CREADO</th>
+                  <td mat-cell *matCellDef="let row">{{ row.created_at }}</td>
+                </ng-container>
+                <ng-container matColumnDef="modified_at">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>MODIFICADO</th>
+                  <td mat-cell *matCellDef="let row">{{ row.modified_at }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+              </table>
+
               </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-green">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-                <p>Ventas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-yellow">
-              <div class="inner">
-                <h3>44</h3>
-                <p>Usuarios Registrados</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-red">
-              <div class="inner">
-                <h3>65</h3>
-                <p>Devoluciones</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+              <mat-paginator 
+                [pageSizeOptions]="[5, 10, 25, 50, 100]"
+                (page)="announceSortChange($event)"
+              ></mat-paginator>
           </div>
         </div>
-      </section>
-    </div>
-    <app-footer-a></app-footer-a>
-    <div class="control-sidebar-bg"></div>
+      </div>
+    </section>
   </div>
+  <app-footer-a></app-footer-a>
+</div>

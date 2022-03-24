@@ -17,6 +17,8 @@ import { DashboardComponent } from './modules/admin/dashboard/dashboard.componen
 import { ProductosComponent } from './modules/admin/productos/productos.component';
 import { FooterAComponent } from './modules/admin/footer-a/footer-a.component';
 import { FormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule,
+    MatPaginatorModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

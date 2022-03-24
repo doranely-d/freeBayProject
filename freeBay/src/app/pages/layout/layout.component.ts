@@ -20,21 +20,18 @@ export class LayoutComponent implements OnInit {
       this.sesion = true;
     }
   }
+
   getCartTotal(): void {
     this.cartService.getCartTotal().subscribe(cart=> this.cart = cart);
 	}
 
   logout() {
-    const token = {token: localStorage.getItem('token')};
-
-    this.authService.logout(token).subscribe( data => {
-      console.log(data);
-    });
+    this.authService.logout(localStorage.getItem('token')).subscribe( data => {
     
+    });
     localStorage.removeItem("user");
     localStorage.removeItem("sesion");
     localStorage.removeItem("token");
     this.router.navigate(['/']);
-}
-
+ }
 }

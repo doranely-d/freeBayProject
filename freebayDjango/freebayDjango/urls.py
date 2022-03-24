@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 from apirest import views
-from apirest.views import cart_item_view, cart_total_view, product_view
+from cart.views import cart_item_view, cart_total_view, order_view, product_view
+from apirest.views import user_view
 
 urlpatterns = [
-    path('user', views.user.as_view()),
+    path('user/', user_view, name='user'),
     path('register', views.register.as_view()),
     path('login', views.login.as_view(), name='login'),
     path('logout', views.Logout.as_view(), name='logout'),
     path('product/', product_view, name='product'),
+    path('order/', order_view, name='order'),
     path('cartTotal/', cart_total_view, name='cartTotal'),
     path('cartItem/', cart_item_view, name='cartItem'),
     path('admin/', admin.site.urls),
