@@ -19,16 +19,22 @@ Sistema de prueba de carrito de compras freeBayProject
 ## Configuración ⚙
 
 activar maquina virtual
+
 $ env\Scripts\activate
 
 Para configurar el backend
+
 $ python manage.py makemigrations
+
 $ python manage.py runserver
 
+
 para configurar frontend
+
 $ npm install
 
 run al projecto angular
+
 $ ng serve -o
 
 
