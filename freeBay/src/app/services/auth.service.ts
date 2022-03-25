@@ -9,7 +9,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   
   public login(username:any, password:any): Observable<any> {
-
     let apiURL = `http://localhost:8000/login?username=${username}&password=${password}`;
     return this.http.post(apiURL,'');
   }

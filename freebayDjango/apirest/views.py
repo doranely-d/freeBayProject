@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from apirest.models import  User
 from apirest.serializers import  UserSerializer, UserTokenSerializer
+from cart.models import Cart
+from cart.serializers import CartSerializer
 
 @api_view(['GET','POST', 'PUT', 'DELETE'])
 def user_view(request, pk=None):
@@ -40,7 +42,11 @@ class login(ObtainAuthToken):
                 token, created = Token.objects.get_or_create(user =user)
                 user_serializer = UserTokenSerializer(user)
                 if created:
+                    cartTotal = Cart.objects.filter(user=user).first()
+                    cart_serializer = CartSerializer(cartTotal)
+
                     return Response({ 
+                        'cart':cart_serializer.data,
                         'token':token.key,
                         'user':user_serializer.data,
                         'message': 'Inicio correcto'
@@ -53,7 +59,10 @@ class login(ObtainAuthToken):
                             session.delete()
                     token.delete()
                     token = Token.objects.create(user=user)
+                    cartTotal = Cart.objects.filter(user=user).first()
+                    cart_serializer = CartSerializer(cartTotal)
                     return Response({ 
+                        'cart':cart_serializer.data,
                         'token':token.key,
                         'user':user_serializer.data,
                         'message': 'Inicio correcto'

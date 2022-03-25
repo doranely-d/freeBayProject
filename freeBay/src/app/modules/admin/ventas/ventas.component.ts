@@ -10,19 +10,6 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent implements OnInit {
-  
-  displayedColumns: string[] = [
-    'id',
-    'user',
-    'name',
-    'total',
-    'total_qty',
-    'created_at',
-    'modified_at',
-  ];
-
-  public dataSource = new MatTableDataSource([]);
-
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
@@ -33,7 +20,18 @@ export class VentasComponent implements OnInit {
   load = false;
   refreshload = false;
 
-  public responseApi: any = [];
+  displayedColumns: string[] = [
+    'id',
+    'user',
+    'name',
+    'total',
+    'total_qty',
+    'created_at',
+    'modified_at',
+  ];
+
+  dataSource = new MatTableDataSource([]);
+  responseApi: any = [];
 
   constructor(private cartService: CartService) {}
 

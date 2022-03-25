@@ -9,26 +9,26 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  public user: any;
+  public id: any;
   public sesion = false;
   cart: any= [];
 
   constructor(private cartService: CartService,private router : Router,private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.getCartTotal();
     if(localStorage.getItem("sesion")){
+      this.user = localStorage.getItem('user') as string;
+      this.user = JSON.parse(this.user);
+      this.cart = localStorage.getItem('cart') as string;
+      this.cart = JSON.parse( this.cart);
+      this.id = this.user.id
       this.sesion = true;
     }
   }
 
-  getCartTotal(): void {
-    this.cartService.getCartTotal().subscribe(cart=> this.cart = cart);
-	}
-
   logout() {
-    this.authService.logout(localStorage.getItem('token')).subscribe( data => {
-    
-    });
+    this.authService.logout(localStorage.getItem('token')).subscribe( data => {});
     localStorage.removeItem("user");
     localStorage.removeItem("sesion");
     localStorage.removeItem("token");

@@ -30,8 +30,8 @@ class CartItem(models.Model):
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total = models.FloatField(null=True)
-    total_qty = models.PositiveIntegerField(null=True)
+    total = models.FloatField()
+    total_qty = models.PositiveIntegerField()
     created_at = models.DateField(auto_now_add=True)
     modified_at = models.DateField(null=True)
 

@@ -33,34 +33,28 @@
                                     <tr  class="cart_item">
                                     <tr >
                                         <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="#">×</a> 
+                                            <a title="Remove this item" class="remove" (click)="deleteCartItems(item)">×</a> 
                                         </td>
-
                                         <td class="product-thumbnail">
                                             <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="../../../assets/images/products/{{item.product.url_image}}"></a>
                                         </td>
-
                                         <td class="product-name">
                                             <a href="">{{item.product.name}}</a> 
                                         </td>
-
                                         <td class="product-price">
                                             <span class="amount">{{item.product.price | currency}}</span> 
                                         </td>
-
                                         <td class="product-quantity">
                                             <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-" (click)="onMinusClick(item,9999999999,9999999999)">
+                                                <input type="button" class="minus" value="-" (click)="onMinusClick(item)">
                                                 <input type="number" size="4" class="input-text qty text" title="Qty" value="{{item.qty}}" min="0" step="1" >
-                                                <input type="button" class="plus" value="+" (click)="onPlusClick(item,9999999999,9999999999)">
+                                                <input type="button" class="plus" value="+" (click)="onPlusClick(item)">
                                             </div>
                                         </td>
-
                                         <td class="product-subtotal">
                                             <span class="amount">{{item.product.price * item.qty | currency}}</span> 
                                         </td>
                                     </tr>
-                                   
                                 </tbody>
                             </table>
                         </form>
@@ -84,7 +78,7 @@
                                         </tr>
                                         <tr>
                                             <td class="actions" colspan="6">
-                                                <input type="submit" value="Comprar" name="proceed" class="checkout-button button alt wc-forward btn-block">
+                                                <button (click)="addOrder()" class=" add_to_cart_button btn-block">Comprar </button>
                                             </td>
                                         </tr>
                                     </tbody>

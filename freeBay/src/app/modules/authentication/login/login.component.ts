@@ -28,10 +28,12 @@ export class LoginComponent implements OnInit {
 
     if (form_login.valid) {
       this.authService.login(form_login.value.username, form_login.value.password).subscribe( data => {
-      console.log(data['user']);
+      console.log(data);
+      
       this.save_sesion(
-        JSON.stringify(data['user']),data['token']
+        JSON.stringify(data['user']),data['token'],JSON.stringify(data['cart'])
       );
+
       this.sesion_user(true);
       
       if (data['user']['role'].name == 'ROL_VENDEDOR') {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
       }
       form_login.reset();
       this.progress_login = false;
+
     },
     (err) => {
       console.log(err);
@@ -57,9 +60,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public save_sesion(data:any,token:any){
+  public save_sesion(data:any,token:any,cart:any){
     localStorage.setItem('user', data);
     localStorage.setItem('token', token);
+    localStorage.setItem('cart', cart);
   }
 
   public sesion_user(sesion: any) {
